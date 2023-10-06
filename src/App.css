@@ -40,3 +40,37 @@
 .read-the-docs {
   color: #888;
 }
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  gap: 16px;
+}
+
+.grid-item-1 {
+  padding: 16px;
+  text-align: center;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.grid-item-2 {
+  padding: 16px;
+  text-align: center;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+.inputVille {
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+}
+
+.fontSize {
+  font-size: 40px;
+}
+
+.space {
+  margin: 10px;
+}

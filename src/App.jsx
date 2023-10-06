@@ -61,17 +61,13 @@ function App() {
     }
   }
 
-  const fontSize = {
-    fontSize: '40px', // Modifier la taille de la police selon vos besoins
-  };
-
   return (
     <div>
       <div>
       <span>
-        <input type="text" placeholder='Saisir une ville' ref={refVille} id='inputVille' />
-        <button onClick={() => rechercheApi(refVille.current.value)}>Rechercher</button>
-        <button onClick={() => localisation()}>Me localiser</button>
+        <input type="text" placeholder='Saisir une ville' ref={refVille} className='inputVille space'/>     {/*Il est possible de mettre un onChange mais je n'ai pas trouvé ca pertinent*/}
+        <button onClick={() => rechercheApi(refVille.current.value)} className='space'>Rechercher</button>
+        <button onClick={() => localisation()} className='space'>Me localiser</button>
       </span>
       </div>
       <span>
@@ -82,16 +78,18 @@ function App() {
       <span>{ville ? " . France" : "" }</span>
       <div>{ville ? <hr/>:""}</div>
       <span>
-        <div>
-          <span>
-            <div style={fontSize}><strong>{temperature} {temperature ? ("°C") : ""}</strong></div>
+        <div className='grid-container'>
+          <span className='grid-item-1'>
+            <div className="fontSize"><strong>{temperature} {temperature ? ("°C") : ""}</strong></div>
             <div>{condition}</div>
           </span>
-          <span>{condition == "sunny" ? (<img src={sunLogo} width="100" height="100" />) : ""}</span>
-          <span>{condition == "cloudy" ? (<img src={cloudLogo} width="100" height="100" />) : ""}</span>
-          <span>{condition == "rainy" ? (<img src={rainLogo} width="100" height="100" />) : ""}</span>
-          <span>{condition == "windy" ? (<img src={windLogo} width="100" height="100" />) : ""}</span>
-          <span>{condition == "stormy" ? (<img src={stormLogo} width="100" height="100" />) : ""}</span>
+          <div className='grid-item-2'>
+            <span>{condition == "sunny" ? (<img src={sunLogo} width="100" height="100" />) : ""}</span>
+            <span>{condition == "cloudy" ? (<img src={cloudLogo} width="100" height="100" />) : ""}</span>
+            <span>{condition == "rainy" ? (<img src={rainLogo} width="100" height="100" />) : ""}</span>
+            <span>{condition == "windy" ? (<img src={windLogo} width="100" height="100" />) : ""}</span>
+            <span>{condition == "stormy" ? (<img src={stormLogo} width="100" height="100" />) : ""}</span>
+          </div>
         </div>
         <div>{condition ? <hr /> : ""}</div>
         <div>{condition == "sunny" ? ("Prennez un short et un t-shirt") : ""}</div>
