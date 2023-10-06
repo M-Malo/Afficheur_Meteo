@@ -35,7 +35,7 @@ function App() {
       console.error('Error fetching data:', error);
     }
     finally {
-      setLoading(false);
+      setLoading(true);
     }
   }
 
@@ -46,8 +46,10 @@ function App() {
       setData(result);
       console.log(result)
       ville = result.city;
+      ville = ville.toUpperCase();
       temperature = result.temperature;
       condition = result.condition;
+
       console.log(ville);
 
     }
@@ -55,24 +57,48 @@ function App() {
       console.error('Error fetching data:', error);
     }
     finally {
-      setLoading(false);
+      setLoading(true);
     }
   }
 
+  const fontSize = {
+    fontSize: '40px', // Modifier la taille de la police selon vos besoins
+  };
+
   return (
     <div>
+      <div>
       <span>
         <input type="text" placeholder='Saisir une ville' ref={refVille} id='inputVille' />
         <button onClick={() => rechercheApi(refVille.current.value)}>Rechercher</button>
         <button onClick={() => localisation()}>Me localiser</button>
       </span>
-      <div>{ville}</div>
+      </div>
+      <span>
+        <strong>
+          {ville}
+        </strong>
+      </span>
+      <span>{ville ? " . France" : "" }</span>
+      <div>{ville ? <hr/>:""}</div>
       <span>
         <div>
-          <div>{temperature}</div>
-          <div>{condition}</div>
+          <span>
+            <div style={fontSize}><strong>{temperature} {temperature ? ("°C") : ""}</strong></div>
+            <div>{condition}</div>
+          </span>
+          <span>{condition == "sunny" ? (<img src={sunLogo} width="100" height="100" />) : ""}</span>
+          <span>{condition == "cloudy" ? (<img src={cloudLogo} width="100" height="100" />) : ""}</span>
+          <span>{condition == "rainy" ? (<img src={rainLogo} width="100" height="100" />) : ""}</span>
+          <span>{condition == "windy" ? (<img src={windLogo} width="100" height="100" />) : ""}</span>
+          <span>{condition == "stormy" ? (<img src={stormLogo} width="100" height="100" />) : ""}</span>
         </div>
-        <div><img src={sunLogo} width="100" height="100"/></div>
+        <div>{condition ? <hr /> : ""}</div>
+        <div>{condition == "sunny" ? ("Prennez un short et un t-shirt") : ""}</div>
+        <div>{condition == "cloudy" ? ("Prennez une veste") : ""}</div>
+        <div>{condition == "rainy" ? ("Prennez un parapluie") : ""}</div>
+        <div>{condition == "windy" ? ("Prennez une écharpe") : ""}</div>
+        <div>{condition == "stormy" ? ("Evitez de sortir de chez vous") : ""}</div>
       </span>
 
     </div>
